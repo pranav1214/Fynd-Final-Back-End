@@ -4,9 +4,22 @@ const { addProduct, updateProduct, removeProduct, getProduct, getProductById } =
 
 const { authenticate, authorize } = require( '../middleware/auth' );
 
+const multer = require( 'multer' );
+
+let storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, '/uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now())
+    }
+  })
+   
+var upload = multer({ storage: storage });
+
 const router = express.Router();
 
-router.post( '/', authenticate, authorize( 'admin' ), addProduct );
+router.post( '/', authenticate, authorize( 'admin' ), upload.single( 'image' ), addProduct );
 
 router.patch( '/:id', authenticate, authorize( 'admin' ), updateProduct );
 

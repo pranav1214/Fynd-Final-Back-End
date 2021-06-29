@@ -7,7 +7,7 @@ const addProduct = ( req, res, next ) => {
     const newProduct = req.body;
 
     if( !newProduct ){
-        const error = new Error( 'Product details missiing' );
+        const error = new Error( 'Product details missing' );
         error.status = 400;
         return next( error );
     }

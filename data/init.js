@@ -1,18 +1,27 @@
 const mongoose = require( 'mongoose' );
 
+mongoose.set( 'useFindAndModify', false );
+mongoose.set( 'returnOriginal', false );
+
 require( '../models/user' );
 
 require( '../models/products' );
 
-const uri = 'mongodb://localhost:27017/groceryDB';
+const DB_HOST = 'localhost';
+const DB_NAME = 'groceryDB';
 
-mongoose.set( 'useFindAndModify', false );
-mongoose.set( 'returnOriginal', false );
+const connectionStr = `mongodb://${DB_HOST}/${DB_NAME}`;
 
-mongoose.connect( uri, { useNewUrlParser: true, useUnifiedTopology: true } );
+
+console.log( `Connecting to database ${DB_NAME}` );
+
+mongoose.connect( connectionStr, {
+     useNewUrlParser: true, 
+     useUnifiedTopology: true 
+    } );
 
 mongoose.connection.on( 'open', () => {
-    console.log( 'Connection to database successful' );
+    console.log( `Connection to database ${DB_NAME} successful ` );
 } );
 
 mongoose.connection.on( 'error', () => {
