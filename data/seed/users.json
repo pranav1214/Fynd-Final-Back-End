@@ -4,8 +4,8 @@
             "$oid": "145678902314567890231456"
         },
         "name": "Pranav",
-        "email": "pranav1@example.com",
-        "password": "$2b$10$srDduTF8ISVpYBFR2tKopeYhY7Iu3SaH2F1.lXn5tfBNKFUy55nnu",
+        "email": "pranav@example.com",
+        "password": "$2b$10$qFnuuUI1zK3/hW.rU.tejerad3k93thMNWuJeMjUw49nKtCTRV.By",
         "role": "admin"
     }
 ]

@@ -1,6 +1,6 @@
 const { execSync } = require( 'child_process' );
 
-const DB_NAME = 'groceryDB';
+const { DB_NAME } = process.env;
 
 try{
     execSync( `mongoimport --db ${DB_NAME} --collection users --drop --file "${process.cwd()}/data/seed/users.json" --jsonArray` );

@@ -1,0 +1,1 @@
+mongoimport --uri="mongodb+srv://pranav:pranav1214@cluster0.b1f3m.mongodb.net/groceryDB?ssl=true&authSource=admin" --collection=users --drop --file="seed/users.json" --jsonArray
