@@ -1,5 +1,7 @@
 const jwt = require( 'jsonwebtoken' );
 
+const { JWT_SECRET_KEY } = process.env;
+
 const authenticate = ( req, res, next ) => {
     const token = req.header( 'Authorization' );
 
@@ -9,7 +11,7 @@ const authenticate = ( req, res, next ) => {
         return next( error );
     }
 
-    jwt.verify( token, 'asdf', ( err, claims ) => {
+    jwt.verify( token, JWT_SECRET_KEY, ( err, claims ) => {
         if( err ){
             const error = new Error( 'Go away stranger' );
             error.status = 403;

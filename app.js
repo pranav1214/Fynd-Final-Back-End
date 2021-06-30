@@ -1,4 +1,8 @@
+require( 'dotenv' ).config();
+
 require( './data/init' );
+
+const path = require( 'path' );
 
 const express = require( 'express' );
 
@@ -12,18 +16,26 @@ const { pageNotFoundHandler, errorHandler } = require( './middleware/errorHandle
 
 const app = express();
 
-app.use( cors() );
+if( process.env.NODE_ENV === 'development' ){
+    app.use( cors() );
+}
+
+app.use( express.static( path.join( process.cwd(), 'public' ) ) );
 
 app.use( express.json() );
 
 app.use( express.urlencoded( { extended: false } ) );
 
-app.use( '/auth', authRouter );
+app.use( '/api/auth', authRouter );
 
-app.use( '/product', productRouter );
+app.use( '/api/product', productRouter );
 
-app.use( pageNotFoundHandler );
-app.use( errorHandler );
+app.use( '/api', pageNotFoundHandler );
+app.use( '/api', errorHandler );
+
+app.use( function (req, res, next){
+    res.sendFile( path.join( process.cwd(), 'public', 'index.html' ) );
+} )
 
 const PORT = process.env.PORT || 3000;
 
