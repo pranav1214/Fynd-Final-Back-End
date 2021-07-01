@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon .",
+    "start:prod": "node .",
     "seed:pass": "node data/hash-passwords.js",
     "seed:local": "node data/seed.js"
   },
